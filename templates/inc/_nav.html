@@ -26,7 +26,10 @@
 	 <li class=""><a href="normal.html">Delivery</a></li>
 	 <li class=""><a href="contact.html">Contact</a></li>
 	 <li class="">
-	 <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
+	{% if user.is_authenticated %}
+		<a href="{% url 'logout' %}" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success"> {{ user.username }} : Logout</span></a>
+	{% else %}	
+	<a href="{% url 'login' %}" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
 	<div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
 		  <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -50,6 +53,7 @@
 			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 		  </div>
 	</div>
+	{% endif %}
 	</li>
     </ul>
   </div>

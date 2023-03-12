@@ -20,36 +20,22 @@
 	<div class="row">
 		<div class="span4">
 			<div class="well">
-			<h5>CREATE YOUR ACCOUNT</h5><br/>
-			Enter your e-mail address to create an account.<br/><br/><br/>
-			<form action="register.html">
+			<h5>Login <br> {{ attention }}</h5>
+			<form method="POST" action="{% url 'login' %}">
+				{% csrf_token %}
+			{% for error in login_form.non_field_errors %}
+					{{ error }} <br>
+			{% endfor %}
 			  <div class="control-group">
-				<label class="control-label" for="inputEmail0">E-mail address</label>
+				<label class="control-label" for="id_username">Username</label>
 				<div class="controls">
-				  <input class="span3"  type="text" id="inputEmail0" placeholder="Email">
-				</div>
-			  </div>
-			  <div class="controls">
-			  <button type="submit" class="btn block">Create Your Account</button>
-			  </div>
-			</form>
-		</div>
-		</div>
-		<div class="span1"> &nbsp;</div>
-		<div class="span4">
-			<div class="well">
-			<h5>ALREADY REGISTERED ?</h5>
-			<form>
-			  <div class="control-group">
-				<label class="control-label" for="inputEmail1">Email</label>
-				<div class="controls">
-				  <input class="span3"  type="text" id="inputEmail1" placeholder="Email">
+				  <input class="span3" id="id_username" type="text" id="inputEmail1" placeholder="Username" name="username">
 				</div>
 			  </div>
 			  <div class="control-group">
-				<label class="control-label" for="inputPassword1">Password</label>
+				<label class="control-label" for="id_password">Password</label>
 				<div class="controls">
-				  <input type="password" class="span3"  id="inputPassword1" placeholder="Password">
+				  <input type="password" class="span3"  id="id_password" placeholder="Password" name="password">
 				</div>
 			  </div>
 			  <div class="control-group">
