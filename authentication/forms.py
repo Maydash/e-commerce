@@ -22,6 +22,16 @@ class LoginForm(forms.Form):
 
 
 class RegisterForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['email'].required = True
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-input'
+
+
     class Meta:
         model = User
-        fields = ('username', 'email', 'password')          
+        fields = ('username', 'email', 'password')     
+        widgets = {
+            'password': forms.PasswordInput()
+        }
